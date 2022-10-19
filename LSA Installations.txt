@@ -1,0 +1,94 @@
+10. Install Apache Web Server
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt update
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt install apache2
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw app list
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw allow 'Apache Full'
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl status apache2
+tumul@tumul-virtual-machine:~/Desktop$ cd ..
+tumul@tumul-virtual-machine:/$ cd /var/www/html/
+tumul@tumul-virtual-machine:/var/www/html$ sudo gedit demo.htm
+
+11. Installation of MySQL Database Server
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt update
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt install mysql-server
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl status mysql.service
+tumul@tumul-virtual-machine:~/Desktop$ sudo mysql_secure_installation
+tumul@tumul-virtual-machine:~/Desktop$ sudo mysql -p -u root
+Creating database, using database, creating table, entering table data.
+
+12.  Python Installation and Execution
+tumul@tumul-virtual-machine:~$ sudo apt update
+tumul@tumul-virtual-machine:~$ sudo apt install software-properties-common
+tumul@tumul-virtual-machine:~$ python3 –version
+tumul@tumul-virtual-machine:~$ sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+tumul@tumul-virtual-machine:~$ cd /usr/src
+tumul@tumul-virtual-machine:/usr/src$ sudo wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+tumul@tumul-virtual-machine:/usr/src$ sudo tar -xzf Python-3.10.6.tgz
+tumul@tumul-virtual-machine:/usr/src$ ls
+tumul@tumul-virtual-machine:/usr/src$ cd Python-3.10.6
+tumul@tumul-virtual-machine:/usr/src/Python-3.10.6$ sudo ./configure --enable-optimization
+tumul@tumul-virtual-machine:/usr/src/Python-3.10.6$ sudo make altinstall
+tumul@tumul-virtual-machine:/usr/src/Python-3.10.6$ python3.10 --version
+tumul@tumul-virtual-machine:/usr/src/Python-3.10.6$ cd ~
+Create a .py file with print ('CR7 is the GOAT.') and save it.
+tumul@tumul-virtual-machine:~$ python3 hello.py
+
+13. Installation of pHpMyAdmin
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt update
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt install phpMyAdmin
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl restart apache2
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl restart mysql.service
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl status apache2
+tumul@tumul-virtual-machine:~/Desktop$ sudo a2enconf phpmyadmin
+
+14. Installing Secure Shell - SSH
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt update
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt install openssh-server
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl status ssh
+tumul@tumul-virtual-machine:~/Desktop$ hostname -I
+192.168.159.128
+tumul@tumul-virtual-machine:~/Desktop$ ls
+
+In Windows:
+Install and Open PuTTY
+Enter the IP Address of the Ubuntu VM - 192.168.159.128, use port 22 and use SSH connection type
+
+15. FTP Installation and Execution
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt update
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt install vsftpd
+tumul@tumul-virtual-machine:~/Desktop$ sudo cp /etc/vsftpd.conf /etc/vsftpd1.conf
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw status
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw enable
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw allow 21/tcp
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw allow 20/tcp
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw allow 40000:50000/tcp
+tumul@tumul-virtual-machine:~/Desktop$ sudo ufw allow OpenSSH
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl status vsftpd
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl restart vsftpd
+Open in the apache browser:
+ftp://192.168.13.128/
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl restart vsftpd
+tumul@tumul-virtual-machine:~/Desktop$ ftp 192.168.13.128
+ftp> ls
+
+16. To Demonstrate the installation and connection of Samba server in Linux and Windows.
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt update
+tumul@tumul-virtual-machine:~/Desktop$ sudo apt install samba
+tumul@tumul-virtual-machine:~/Desktop$ ls /etc/samba
+tumul@tumul-virtual-machine:~/Desktop$ mkdir smbdir1
+tumul@tumul-virtual-machine:~/Desktop/smbdir1$ cat > myfile1.txt
+tumul@tumul-virtual-machine:~/Desktop/smbdir1$ cd ..
+tumul@tumul-virtual-machine:~/Desktop$ sudo adduser sambauser1
+tumul@tumul-virtual-machine:~/Desktop$ sudo systemctl status smbd
+tumul@tumul-virtual-machine:~$ sudo ufw allow samba
+tumul@tumul-virtual-machine:~$ sudo systemctl restart smbd
+tumul@tumul-virtual-machine:~$ sudo systemctl status smbd
+tumul@tumul-virtual-machine:~$ sudo smbpasswd -a sambauser1
+
+Follow these steps:
+1. In Windows OS, click on Network icon on desktop
+2. You will get UMAR icon in window, click on that, it will display smbdir1 folder
+3. Click on the folder you created
+4. Enter the new username and password, which you created in Ubuntu for samba server. 
+(i.e sambauser1 and its password)
+5. Now you can share folder, files from Windows to Linux and the other way around
